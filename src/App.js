@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Router from "./router/router";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    const tokenExpiration = 3600 * 1000; // 1 giờ
+    console.log("TOKEN","Bearer" + localStorage.getItem('token'));
+    setTimeout(() => {
+      window.location.href = "/login";
+      localStorage.removeItem("token");
+    }, tokenExpiration);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Router />
+      <ToastContainer />
+    </Fragment>
   );
-}
-
+};
 export default App;
