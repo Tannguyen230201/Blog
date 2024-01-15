@@ -25,8 +25,7 @@ const Login = () => {
     dispatch(LoginAPI(user)).then((e) => {
       if (e.payload?.user) {
         navigation("/home");
-        console.log("TEST",e);
-        localStorage.setItem("token", JSON.stringify(e.payload.user.token));
+        localStorage.setItem("token", e.payload.user.token);
       } else {
         toast.error("Tài khoản không chính xác");
       }

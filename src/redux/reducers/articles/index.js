@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GetAllArticlesAPI } from "../../../api";
+import { CreateArticlesAPI, GetAllArticlesAPI } from "../../../api";
 
 const initialState = {
   data: [],
@@ -27,23 +27,22 @@ export const ArticlesSlice = createSlice({
       state.error = true;
       state.message = "Error";
     });
-    // builder.addCase(createSvApi.pending, (state, action) => {
-    //   state.isLoading = true;
-    //   state.isSuccess = false;
-    //   state.message = "pending...";
-    // });
-    // builder.addCase(createSvApi.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isSuccess = true;
-    //   state.data.unshift(action.payload.data);
-    //   console.log("data", action.payload.data);
-    // });
-    // builder.addCase(createSvApi.rejected, (state, action) => {
-    //   state.data = [];
-    //   state.isLoading = true;
-    //   state.error = true;
-    //   state.message = "Error";
-    // });
+    builder.addCase(CreateArticlesAPI.pending, (state, action) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.message = "pending...";
+    });
+    builder.addCase(CreateArticlesAPI.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.data.articles.unshift(action.payload.article);
+    });
+    builder.addCase(CreateArticlesAPI.rejected, (state, action) => {
+      // state.data = [];
+      state.isLoading = true;
+      state.error = true;
+      state.message = "Error";
+    });
     // builder.addCase(deleteAPI.pending, (state) => {
     //   state.isLoading = true;
     //   state.isSuccess = false;

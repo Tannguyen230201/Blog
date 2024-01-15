@@ -11,8 +11,8 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   function (response) {
-    response.headers["Authorization"] = "Bearer" + localStorage.getItem("token");
-    return response;
+    response.headers["Authorization"] = "Bearer " + localStorage.getItem("token");
+    return response; 
   },
   function (error) {
     console.error("check error: " + error);

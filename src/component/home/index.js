@@ -38,7 +38,7 @@ const Home = () => {
         </div>
       <br/>
       {data?.articles?.map((e) => {
-        return <div key={e.slug}>title: {e.title}</div>;
+        return <div key={e?.slug}>title: {e?.slug}</div>;
       })}
     </Fragment>
   );
