@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.dropdown-toggle::after {
+  display: none !important;
+}
+.btn_delete{
+  background-color: rgb(204, 255, 255) !important;
+  border: none !important;
+}
+.accordion-button::after {
+  display: none !important;
+}
+.accordion-item{
+  border: none !important;
+}
+.accordion-button:not(.collapsed){
+  background-color: #fff !important;
+}
+.navbar-toggler{
+  border: none !important;
+}

@@ -26,6 +26,7 @@ const Login = () => {
       if (e.payload?.user) {
         navigation("/home");
         localStorage.setItem("token", e.payload.user.token);
+        localStorage.setItem("user", JSON.stringify(e.payload.user));
       } else {
         toast.error("Tài khoản không chính xác");
       }

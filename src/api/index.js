@@ -14,9 +14,9 @@ export const LoginAPI = createAsyncThunk("loginAPI", async (user) => {
 export const GetAllArticlesAPI = createAsyncThunk(
   "get_all_articles_API",
   async () => {
-    const response = await instance.get(
-      // `${process.env.REACT_APP_API}/api/articles?limit=20&offset=0`
-      "/api/articles?limit=20&offset=0"
+    const response = await axios.get(
+      `${process.env.REACT_APP_API}/api/articles?limit=10&offset=0`
+      // "/api/articles?limit=20&offset=0"
     );
     return response.data;
   }
@@ -27,6 +27,33 @@ export const CreateArticlesAPI = createAsyncThunk(
     const response = await instance.post(
       `/api/articles`,
       user
+    );
+    return response.data;
+  }
+);
+export const DeleteArticlesAPI = createAsyncThunk(
+  "delete_articles_API",
+  async (slug) => {
+    const response = await instance.delete(
+      `/api/articles/${slug}`,
+    );
+    return response.data;
+  }
+);
+export const GetCommentsAPI = createAsyncThunk(
+  "get_comments_API",
+  async (slug) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API}/api/articles/${slug}/comments`,
+    );
+    return response.data;
+  }
+);
+export const PostCommentAPI = createAsyncThunk(
+  "post_comments_API",
+  async (data) => {
+    const response = await instance.post(
+      `/api/articles/${data.slug}/comments`,data.body
     );
     return response.data;
   }

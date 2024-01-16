@@ -1,8 +1,9 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes ,Navigate} from "react-router-dom";
 import { Fragment } from "react";
 import PrivateRoute from "./privateRouter";
 import Login from "../component/login";
 import Home from "../component/home";
+
 
 const Router = () => {
   return (
@@ -10,6 +11,7 @@ const Router = () => {
       <Routes>
         <Route exact path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         {/*  <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="*" element={<PageNotFound />} />
