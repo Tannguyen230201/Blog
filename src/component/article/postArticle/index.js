@@ -30,7 +30,7 @@ const PostArticle = () => {
   };
   return !token ? "" :(
     <div className="container ">
-      <div className="row-12">
+      <div className="row-12 mb-3">
         <Button
           // variant="primary btn btn-info text-white"
           style={{background:"rgb(204, 255, 255)",color:"black",border:"none",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}

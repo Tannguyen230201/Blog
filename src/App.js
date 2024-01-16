@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Fragment>
       <Header style={style} />
-      <div style={{ marginTop: "80px" }}></div>
+      <div style={{ marginTop: "70px" }}></div>
       <Router />
       <ToastContainer />
     </Fragment>

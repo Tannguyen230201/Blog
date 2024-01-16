@@ -22,7 +22,7 @@ const GetAllArticle = () => {
           data?.articles?.map((item, index) => {
             return (
               <div
-                className="container mb-2 "
+                className="container mb-3 "
                 style={{ backgroundColor: "#CCFFFF", borderRadius: "3px",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
                 key={"key" + index}
               >
