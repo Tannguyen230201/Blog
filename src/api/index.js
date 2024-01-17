@@ -21,6 +21,16 @@ export const GetAllArticlesAPI = createAsyncThunk(
     return response.data;
   }
 );
+export const DetailArticleAPI = createAsyncThunk(
+  "get_detail_article_API",
+  async (slug) => {
+    const response = await instance.get(
+      `/api/articles/${slug}`
+      // "/api/articles?limit=20&offset=0"
+    );
+    return response.data;
+  }
+);
 export const CreateArticlesAPI = createAsyncThunk(
   "create_articles_API",
   async (user) => {
@@ -54,6 +64,15 @@ export const PostCommentAPI = createAsyncThunk(
   async (data) => {
     const response = await instance.post(
       `/api/articles/${data.slug}/comments`,data.body
+    );
+    return response.data;
+  }
+);
+export const LikeArticleAPI = createAsyncThunk(
+  "like_articles_API",
+  async (slug) => {
+    const response = await instance.post(
+      `/api/articles/${slug}/favorite`
     );
     return response.data;
   }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetCommentsAPI } from "../../../api";
 import PostComment from "../postComment";
 import Loading from "../../../common/loading";
+import ChangeTime from "../../../common/changeTime";
 
 const GetComments = (props) => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const GetComments = (props) => {
                       </div>
                       <div className="row">{item.body}</div>
                       <div className="row" style={{ fontSize: "10px" }}>
-                        {item.createdAt}
+                        <ChangeTime time={item.createdAt}/>
                       </div>
                     </div>
                   </div>
