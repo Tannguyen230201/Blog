@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GetCommentsAPI ,PostCommentAPI} from "../../../api";
+import { GetCommentsAPI ,PostCommentAPI,DeleteCommentAPI} from "../../../api";
 
 const initialState = {
   data: [],
@@ -16,6 +16,7 @@ export const CommentsSlice = createSlice({
       state.isLoading = true;
       state.isSuccess = false;
       state.message = "pending...";
+      // state.data = [];
     });
     builder.addCase(GetCommentsAPI.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -42,23 +43,23 @@ export const CommentsSlice = createSlice({
       state.error = true;
       state.message = "Error";
     });
-    // builder.addCase(DeleteArticlesAPI.pending, (state) => {
-    //   state.isLoading = true;
-    //   state.isSuccess = false;
-    //   state.message = "pending...";
-    // });
-    // builder.addCase(DeleteArticlesAPI.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isSuccess = true;
-    //   const index = state.data.articles.findIndex(e => e.slug);
-    //   state.data.articles.splice(index, 1);
+    builder.addCase(DeleteCommentAPI.pending, (state) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.message = "pending...";
+    });
+    builder.addCase(DeleteCommentAPI.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      const index = state.data.articles.findIndex(e => e.slug);
+      state.data.articles.splice(index, 1);
 
-    // });
-    // builder.addCase(DeleteArticlesAPI.rejected, (state, action) => {
-    //   state.isLoading = true;
-    //   state.error = true;
-    //   state.message = "Error";
-    // });
+    });
+    builder.addCase(DeleteCommentAPI.rejected, (state, action) => {
+      state.isLoading = true;
+      state.error = true;
+      state.message = "Error";
+    });
     // builder.addCase(editSvApi.pending, (state) => {
     //   state.isLoading = true;
     //   state.isSuccess = false;

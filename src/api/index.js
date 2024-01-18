@@ -25,8 +25,8 @@ export const DetailArticleAPI = createAsyncThunk(
   "get_detail_article_API",
   async (slug) => {
     const response = await instance.get(
-      `/api/articles/${slug}`
-      // "/api/articles?limit=20&offset=0"
+      // `${process.env.REACT_APP_API}/api/articles/${slug}`
+      `/api/articles/${slug}`,
     );
     return response.data;
   }
@@ -34,19 +34,21 @@ export const DetailArticleAPI = createAsyncThunk(
 export const CreateArticlesAPI = createAsyncThunk(
   "create_articles_API",
   async (user) => {
-    const response = await instance.post(
-      `/api/articles`,
-      user
-    );
+    const response = await instance.post(`/api/articles`, user);
+    return response.data;
+  }
+);
+export const UpdateArticlesAPI = createAsyncThunk(
+  "update_articles_API",
+  async (data) => {
+    const response = await instance.put(`/api/articles/${data.slug}`, data.body);
     return response.data;
   }
 );
 export const DeleteArticlesAPI = createAsyncThunk(
   "delete_articles_API",
   async (slug) => {
-    const response = await instance.delete(
-      `/api/articles/${slug}`,
-    );
+    const response = await instance.delete(`/api/articles/${slug}`);
     return response.data;
   }
 );
@@ -54,7 +56,7 @@ export const GetCommentsAPI = createAsyncThunk(
   "get_comments_API",
   async (slug) => {
     const response = await axios.get(
-      `${process.env.REACT_APP_API}/api/articles/${slug}/comments`,
+      `${process.env.REACT_APP_API}/api/articles/${slug}/comments`
     );
     return response.data;
   }
@@ -63,7 +65,18 @@ export const PostCommentAPI = createAsyncThunk(
   "post_comments_API",
   async (data) => {
     const response = await instance.post(
-      `/api/articles/${data.slug}/comments`,data.body
+      `/api/articles/${data.slug}/comments`,
+      data.body
+    );
+    return response.data;
+  }
+);
+export const DeleteCommentAPI = createAsyncThunk(
+  "delete_comments_API",
+  async (data) => {
+    const response = await instance.post(
+      `/api/articles/${data.slug}/comments/${data.idComment}`,
+      data.body
     );
     return response.data;
   }
@@ -71,9 +84,14 @@ export const PostCommentAPI = createAsyncThunk(
 export const LikeArticleAPI = createAsyncThunk(
   "like_articles_API",
   async (slug) => {
-    const response = await instance.post(
-      `/api/articles/${slug}/favorite`
-    );
+    const response = await instance.post(`/api/articles/${slug}/favorite`);
+    return response.data;
+  }
+);
+export const UnLikeArticleAPI = createAsyncThunk(
+  "un_like_articles_API",
+  async (slug) => {
+    const response = await instance.delete(`/api/articles/${slug}/favorite`);
     return response.data;
   }
 );

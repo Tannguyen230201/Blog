@@ -1,8 +1,8 @@
 const Loading = () => {
   return (
-    <div class="d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center mt-3" style={{color:"#0dcaf0"}}>
       <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+        <span class="visually-hidden" >Loading...</span>
       </div>
     </div>
   );

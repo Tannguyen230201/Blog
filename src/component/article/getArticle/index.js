@@ -15,6 +15,7 @@ const GetAllArticle = () => {
   const data = useSelector((state) => state.articles.data);
   useEffect(() => {
     dispatch(GetAllArticlesAPI());
+    console.log(data);
   }, []);
   return (
     <Fragment>
@@ -25,7 +26,7 @@ const GetAllArticle = () => {
           data?.articles?.map((item, index) => {
             return (
               <div
-                className="container mb-3 "
+                className="container mb-3 pb-3 "
                 style={{
                   backgroundColor: "#CCFFFF",
                   borderRadius: "3px",
@@ -75,7 +76,7 @@ const GetAllArticle = () => {
                 <hr style={{ opacity: "1", color: "#DDDDDD" }} />
                 <Link
                   to={`/article/${item.slug}`}
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none" ,color:"#333"}}
                 >
                   <div
                     className="row-12 fs-4"

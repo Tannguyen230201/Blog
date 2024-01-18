@@ -17,10 +17,9 @@ const PostComment = (props) => {
       },
     },
   };
-  const handleComment = async () => {
-    await dispatch(PostCommentAPI(body));
-    dispatch(GetCommentsAPI(props.slug))
-    console.log(body);
+  const handleComment =  () => {
+    dispatch(PostCommentAPI(body));
+    setComment("")
   };
   return !token ? (
     <div style={{ textAlign: "center" }}>
@@ -42,15 +41,17 @@ const PostComment = (props) => {
             type="text"
             className="w-100 form-control"
             onChange={(e) => setComment(e.target.value)}
+            value={comment}
             placeholder="comments..."
             autoFocus
           />
         </div>
         <div className="col-2 col-sm-2 col-md-1 col-lg-1">
           <button
-            style={{ border: "none", background: "#fff", color: "#0dcaf0" }}
+            style={{ border: "none", background: "rgb(204, 255, 255)", color: "#0dcaf0" }}
+            disabled= {comment ? false : true}
           >
-            <GrSend className="fs-2" onClick={handleComment} />
+            <GrSend className="fs-2" onClick={handleComment}/>
           </button>
         </div>
       </div>

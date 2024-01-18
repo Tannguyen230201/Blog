@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CreateArticlesAPI, GetAllArticlesAPI,DeleteArticlesAPI } from "../../../api";
+import { CreateArticlesAPI, GetAllArticlesAPI,DeleteArticlesAPI,UpdateArticlesAPI } from "../../../api";
 
 const initialState = {
   data: [],
@@ -59,21 +59,21 @@ export const ArticlesSlice = createSlice({
       state.error = true;
       state.message = "Error";
     });
-    // builder.addCase(editSvApi.pending, (state) => {
-    //   state.isLoading = true;
-    //   state.isSuccess = false;
-    //   state.message = "pending...";
-    // });
-    // builder.addCase(editSvApi.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isSuccess = true;
-    //   state.data = action.payload;
-    // });
-    // builder.addCase(editSvApi.rejected, (state, action) => {
-    //   state.isLoading = true;
-    //   state.error = true;
-    //   state.message = "Error";
-    // });
+    builder.addCase(UpdateArticlesAPI.pending, (state) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.message = "pending...";
+    });
+    builder.addCase(UpdateArticlesAPI.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.data = action.payload;
+    });
+    builder.addCase(UpdateArticlesAPI.rejected, (state, action) => {
+      state.isLoading = true;
+      state.error = true;
+      state.message = "Error";
+    });
     
   },
 });

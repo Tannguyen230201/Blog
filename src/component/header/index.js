@@ -13,7 +13,7 @@ function Header(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     navigation('/login');
-    toast.success("Successful logout")
+    // toast.success("Successful logout")
   }
 
   return (

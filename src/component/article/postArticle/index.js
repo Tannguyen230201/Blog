@@ -43,7 +43,7 @@ const PostArticle = () => {
             src={JSON.parse(localStorage.getItem("user"))?.image}
             alt="avatar"
           />
-          <span className="mx-3">What's on your mind, {data?.username} ?</span>
+          <span className="mx-3">What's on your mind, <b>{JSON.parse(localStorage.getItem("user")).username}</b> ?</span>
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

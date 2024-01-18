@@ -1,50 +1,42 @@
 import Accordion from "react-bootstrap/Accordion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetCommentsAPI } from "../../../api";
 import PostComment from "../postComment";
 import Loading from "../../../common/loading";
 import ChangeTime from "../../../common/changeTime";
+import DeleteComment from "../deleteComment";
 
 const GetComments = (props) => {
   const dispatch = useDispatch();
 //   const [dataComment, setDataComment] = useState([]);
   const [noComment, setNoComment] = useState(false);
   const  dataComment =  useSelector(e=>e.comments.data.comments)
-  const handleGetComment = () => {
-    dispatch(GetCommentsAPI(props.slug)).then((e) => {
-      console.log("XX", e.payload.comments);
-    //   setDataComment(e.payload.comments);
-      if (e.payload.comments.length === 0) {
-        setNoComment(true);
-      }
-    });
-    console.log(dataComment);
-    console.log(dataComment == null);
-  };
+  const  loading =  useSelector(e=>e.comments.isLoading)
+  useEffect((e)=>{
+    dispatch(GetCommentsAPI(props.slug))
+    console.log(props?.slug);
+  },[])
   return (
     <div>
-      <Accordion defaultActiveKey="0" >
-        <Accordion.Item eventKey="1">
-          <Accordion.Header onClick={handleGetComment} className="btn_delete">
-            Comments
-          </Accordion.Header>
-          <Accordion.Body style={{ textAlign: "justify", marginTop: "-10px" }}>
+          <div style={{ textAlign: "justify", marginTop: "-10px" }}>
             <PostComment slug={props.slug}/>
-          </Accordion.Body>
-          {noComment ? (
-            <Accordion.Body
-              style={{ textAlign: "justify", marginTop: "-10px" }}
+          </div>
+          { loading ? <Loading/> : 
+          (
+            (dataComment?.length === 0) ? (
+            <div
+              style={{ textAlign: "justify"}}
             >
-              <div className="row">
+              <div className="row mt-2">
                 <span className="text-center">This post has no comment</span>
               </div>
-            </Accordion.Body>
-          ) : (
-            <Accordion.Body style={{ textAlign: "justify" }}>
+            </div>
+          ) :  
+            <div style={{ textAlign: "justify",minHeight:"100px",height:"auto",overflow:"auto",scrollbar: "none" }}>
               {dataComment?.map((item, index) => {
                 return (
-                  <div className="row rounded  mb-2" style={{background:"rgb(204, 255, 255)"}} key={item.id}>
+                  <div className="row rounded col-sm-10 mb-2 mt-2" style={{background:"rgb(204, 255, 255)",margin:"auto"}} key={item.id}>
                     <div className="col-sm-2 col-md-2 col-3 col-lg-1 pt-2">
                       <img
                         className="img-fluid rounded-circle"
@@ -62,13 +54,12 @@ const GetComments = (props) => {
                         <ChangeTime time={item.createdAt}/>
                       </div>
                     </div>
+                    <div className="col-sm-1 col-md-1 col-7 col-lg-1 pt-1"><DeleteComment author = {item.author.username}/></div>
                   </div>
                 );
               })}
-            </Accordion.Body>
+            </div>
           )}
-        </Accordion.Item>
-      </Accordion>
     </div>
   );
 };
