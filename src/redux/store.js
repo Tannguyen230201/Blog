@@ -4,6 +4,7 @@ import ArticlesSlice from "./reducers/articles";
 import CommentsSlice from "./reducers/comments";
 import FavoriteSlice  from "./reducers/favorite";
 import DetailArticleSlice from "./reducers/detailArticle";
+import PersonalPageSlice  from "./reducers/user";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     comments: CommentsSlice,
     favorite : FavoriteSlice,
     detail: DetailArticleSlice,
+    personalPage: PersonalPageSlice,
   },
 });

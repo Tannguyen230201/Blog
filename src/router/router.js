@@ -4,7 +4,7 @@ import PrivateRoute from "./privateRouter";
 import Login from "../component/login";
 import Home from "../component/home";
 import DetailArticle from "../component/article/detailArticle";
-import ProfileUser from "../component/profileUser";
+import PersonalPage from "../component/personalPage";
 
 
 
@@ -16,10 +16,14 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/home" />} />
         {/* <Route path="/article/:slug" element={<DetailArticle/>} /> */}
-        <Route path="/profile/:author" element={<ProfileUser/>} />
+        {/* <Route path="/profile/:author" element={<ProfileUser/>} /> */}
         <Route
           path="/article/:slug"
           element={<PrivateRoute component={DetailArticle} />}
+        />
+          <Route
+          path="/profile/:user"
+          element={<PrivateRoute component={PersonalPage} />}
         />
         {/*  <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="/login" />} />

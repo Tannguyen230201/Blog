@@ -17,7 +17,7 @@ function Header(props) {
   }
 
   return (
-    <Navbar expand="lg" style={{position:'fixed',top:'0',left:'0',right:'0',zIndex:'100',background:"rgb(204, 255, 255)", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}>
+    <Navbar expand="lg" style={{position:'fixed',top:'0',left:'0',right:'0',zIndex:'100',background:"#FFF", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}>
       <Container>
         <Navbar.Brand>
         <NavLink to='/' className='nav-link'>
@@ -31,11 +31,11 @@ function Header(props) {
               Home
             </NavLink>
             <NavLink to='/favorite' className='nav-link' >
-              Favorite
+              Feed 
             </NavLink>
           </Nav>
           {
-            token ? <Nav>Hello,<NavLink to='/user' style={{fontWeight:'600',color:'red',textDecoration:'none'}}>&nbsp;{dataUser?.username}</NavLink></Nav> : ""
+            token ? <Nav>Hello,<NavLink to={`/profile/${dataUser.username}`} style={{fontWeight:'600',color:'red',textDecoration:'none'}}>&nbsp;{dataUser?.username}</NavLink></Nav> : ""
           }
           
           <Nav>

@@ -17,9 +17,15 @@ const PostComment = (props) => {
       },
     },
   };
-  const handleComment =  () => {
+  const handleComment = () => {
     dispatch(PostCommentAPI(body));
-    setComment("")
+    setComment("");
+  };
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      dispatch(PostCommentAPI(body));
+      setComment("");
+    }
   };
   return !token ? (
     <div style={{ textAlign: "center" }}>
@@ -44,14 +50,19 @@ const PostComment = (props) => {
             value={comment}
             placeholder="comments..."
             autoFocus
+            onKeyPress={(e) => handleKeyPress(e)}
           />
         </div>
         <div className="col-2 col-sm-2 col-md-1 col-lg-1">
           <button
-            style={{ border: "none", background: "rgb(204, 255, 255)", color: "#0dcaf0" }}
-            disabled= {comment ? false : true}
+            style={{
+              border: "none",
+              background: "#FFF",
+              color: "#333",
+            }}
+            disabled={comment ? false : true}
           >
-            <GrSend className="fs-2" onClick={handleComment}/>
+            <GrSend className="fs-2" onClick={handleComment} />
           </button>
         </div>
       </div>

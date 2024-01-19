@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Fragment, useEffect, useState } from "react";
-import { DetailArticleAPI, GetAllArticlesAPI } from "../../../api";
-import { BsThreeDots } from "react-icons/bs";
+import { Fragment, useEffect } from "react";
+import { DetailArticleAPI, GetCommentsAPI } from "../../../api";
 import Loading from "../../../common/loading";
 import DeleteArticle from "../deleteArticle";
 import GetComments from "../../comment/getComment";
 import ChangeTime from "../../../common/changeTime";
 import LikeArticles from "../likeArticle";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const DetailArticle = () => {
@@ -17,6 +15,7 @@ const DetailArticle = () => {
   const item = useSelector((state) => state?.detail?.data?.article);
   useEffect(() => {
     dispatch(DetailArticleAPI(slug));
+    dispatch(GetCommentsAPI(slug));
   }, []);
   return (
     <Fragment>
@@ -27,7 +26,7 @@ const DetailArticle = () => {
           <div
             className="container mb-3 "
             style={{
-              backgroundColor: "#CCFFFF",
+              backgroundColor: "#FFF",
               borderRadius: "3px",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             }}
@@ -65,7 +64,13 @@ const DetailArticle = () => {
               >
                 {item?.author.username ===
                 JSON.parse(localStorage.getItem("user"))?.username ? (
-                  <DeleteArticle slug={item.slug} title ={item.title} description={item.description} body={item.body} tag ={item.tagList[0]} />
+                  <DeleteArticle
+                    slug={item.slug}
+                    title={item.title}
+                    description={item.description}
+                    body={item.body}
+                    tag={item.tagList[0]}
+                  />
                 ) : (
                   ""
                 )}
@@ -79,13 +84,13 @@ const DetailArticle = () => {
               {item?.title}
             </div>
             <div className="row-12 mb-3" style={{ textAlign: "justify" }}>
-                      {item?.body}
-                    </div>
-                    <div className="row-12" style={{ textAlign: "justify" }}>
-                      {/* {item?.description} */}
-                      <div style={{ fontStyle: "italic" }}>#{item?.tagList}</div>
-                      <hr style={{ opacity: "1", color: "#DDDDDD" }} />
-                    </div>
+              {item?.body}
+            </div>
+            <div className="row-12" style={{ textAlign: "justify" }}>
+              {/* {item?.description} */}
+              <div style={{ fontStyle: "italic" }}>#{item?.tagList}</div>
+              <hr style={{ opacity: "1", color: "#DDDDDD" }} />
+            </div>
             <div className="row-12 mt-3" style={{ textAlign: "justify" }}>
               {
                 <LikeArticles

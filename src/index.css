@@ -15,7 +15,7 @@ code {
   display: none !important;
 }
 .btn_delete{
-  background-color: rgb(204, 255, 255) !important;
+  background-color: #FFF !important;
   border: none !important;
 }
 .accordion-button::after {

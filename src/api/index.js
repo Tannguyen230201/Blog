@@ -16,7 +16,25 @@ export const GetAllArticlesAPI = createAsyncThunk(
   async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_API}/api/articles?limit=10&offset=0`
-      // "/api/articles?limit=20&offset=0"
+      // "/api/articles?limit=105&offset=0"
+    );
+    return response.data;
+  }
+);
+export const MyArticlesAPI = createAsyncThunk(
+  "my_articles_API",
+  async (user) => {
+    const response = await instance.get(
+      `/api/articles?author=${user}&limit=10&offset=0`
+    );
+    return response.data;
+  }
+);
+export const FavoriteArticlesAPI = createAsyncThunk(
+  "favorite_articles_API",
+  async (user) => {
+    const response = await instance.get(
+      `/api/articles?favorited=${user}&limit=10&offset=0`
     );
     return response.data;
   }
@@ -92,6 +110,36 @@ export const UnLikeArticleAPI = createAsyncThunk(
   "un_like_articles_API",
   async (slug) => {
     const response = await instance.delete(`/api/articles/${slug}/favorite`);
+    return response.data;
+  }
+);
+export const PersonalPageAPI = createAsyncThunk(
+  "personal_user_API",
+  async (user) => {
+    const response = await instance.get(
+      `/api/profiles/${user}`
+      // "/api/articles?limit=105&offset=0"
+    );
+    return response.data;
+  }
+);
+export const FollowAPI = createAsyncThunk(
+  "follow_API",
+  async (user) => {
+    const response = await instance.post(
+      `/api/profiles/${user}/follow`
+      // "/api/articles?limit=105&offset=0"
+    );
+    return response.data;
+  }
+);
+export const UnFollowAPI = createAsyncThunk(
+  "un_follow_API",
+  async (user) => {
+    const response = await instance.delete(
+      `/api/profiles/${user}/follow`
+      // "/api/articles?limit=105&offset=0"
+    );
     return response.data;
   }
 );
