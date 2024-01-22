@@ -30,7 +30,7 @@ function Header(props) {
             <NavLink to='/home' className='nav-link' >
               Home
             </NavLink>
-            <NavLink to='/favorite' className='nav-link' >
+            <NavLink to='/feed' className='nav-link' >
               Feed 
             </NavLink>
           </Nav>

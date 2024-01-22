@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FavoriteArticlesAPI,CreateArticlesAPI, GetAllArticlesAPI,DeleteArticlesAPI,UpdateArticlesAPI,MyArticlesAPI} from "../../../api";
+import { FavoriteArticlesAPI,CreateArticlesAPI, GetAllArticlesAPI,DeleteArticlesAPI,UpdateArticlesAPI,MyArticlesAPI,ArticlesFollowingAPI} from "../../../api";
 
 const initialState = {
   data: [],
@@ -23,6 +23,21 @@ export const ArticlesSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(GetAllArticlesAPI.rejected, (state, action) => {
+      state.isLoading = true;
+      state.error = true;
+      state.message = "Error";
+    });
+    builder.addCase(ArticlesFollowingAPI.pending, (state) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.message = "pending...";
+    });
+    builder.addCase(ArticlesFollowingAPI.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.data = action.payload;
+    });
+    builder.addCase(ArticlesFollowingAPI.rejected, (state, action) => {
       state.isLoading = true;
       state.error = true;
       state.message = "Error";

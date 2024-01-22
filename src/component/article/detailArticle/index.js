@@ -7,6 +7,7 @@ import GetComments from "../../comment/getComment";
 import ChangeTime from "../../../common/changeTime";
 import LikeArticles from "../likeArticle";
 import { useParams } from "react-router-dom";
+import { Image } from "react-bootstrap";
 
 const DetailArticle = () => {
   const { slug } = useParams();
@@ -34,12 +35,13 @@ const DetailArticle = () => {
             <div className="row">
               <div className="col-sm-2 col-md-2 col-3 col-lg-1 pt-2">
                 {/* <Link to={`/profile/${item.author.username}`}> */}
-                <img
-                  className="img-fluid rounded-circle"
-                  src={item?.author?.image}
-                  alt=""
+                <Image
+                  // className="img-fluid rounded-circle"
+                  roundedCircle
                   width="50"
                   height="50"
+                  src={item?.author?.image}
+                  alt=""
                 />
                 {/* </Link> */}
               </div>

@@ -6,6 +6,8 @@ import PostComment from "../postComment";
 import Loading from "../../../common/loading";
 import ChangeTime from "../../../common/changeTime";
 import DeleteComment from "../deleteComment";
+import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const GetComments = (props) => {
   const dataComment = useSelector((e) => e.comments.data.comments);
@@ -41,15 +43,29 @@ const GetComments = (props) => {
                 key={item.id}
               >
                 <div className="col-sm-2 col-md-2 col-3 col-lg-1 pt-2">
-                  <img
-                    className="img-fluid rounded-circle"
-                    width="40"
-                    src={item.author.image}
-                    alt=""
-                  />
+                  <Link
+                    style={{ textDecoration: "none", color: "#333" }}
+                    to={`/profile/${item?.author?.username}`}
+                  >
+                    <Image
+                      // className="img-fluid rounded-circle"
+                      roundedCircle
+                      width="40"
+                      height="40"
+                      src={item?.author?.image}
+                      alt=""
+                    />
+                  </Link>
                 </div>
                 <div className="col-sm-9 col-md-9 col-7 col-lg-10 pt-1">
-                  <div className="row fs-5 fw-bold">{item.author.username}</div>
+                  <Link
+                    style={{ textDecoration: "none", color: "#333" }}
+                    to={`/profile/${item?.author?.username}`}
+                  >
+                    <div className="row fs-5 fw-bold">
+                      {item.author.username}
+                    </div>
+                  </Link>
                   <div className="row">{item.body}</div>
                   <div className="row" style={{ fontSize: "10px" }}>
                     <ChangeTime time={item.createdAt} />

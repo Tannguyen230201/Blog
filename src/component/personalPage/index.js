@@ -14,7 +14,7 @@ function PersonalPage() {
   useEffect((e) => {
     dispatch(PersonalPageAPI(user));
     dispatch(MyArticlesAPI(user));
-  }, []);
+  }, [user]);
   return loading ? (
     <Loading />
   ) : (

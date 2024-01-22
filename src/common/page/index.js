@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChangeTime from "../changeTime";
+import { Image } from "react-bootstrap";
 const Page = (props) => {
+  const navigate = useNavigate();
   return (
     <div
       className="container mb-3 pb-3 "
@@ -14,12 +16,13 @@ const Page = (props) => {
       <div className="row">
         <div className="col-sm-2 col-md-2 col-3 col-lg-1 pt-2">
           <Link to={`/profile/${props.userName}`}>
-            <img
-              className="img-fluid rounded-circle"
+            <Image
               src={props.image}
               alt=""
-              width="50"
-              height="50"
+              roundedCircle
+              width="50px"
+              height="50px"
+              style={{color:"yellow"}}
             />
           </Link>
         </div>
@@ -27,9 +30,9 @@ const Page = (props) => {
           className="  col-sm-9 col-md-9 col-7 col-lg-10 pt-1"
           style={{ textAlign: "left" }}
         >
-          <div className="row" style={{ fontSize: "20px", fontWeight: "700" }}>
+          <Link style={{textDecoration:"none",color:"#333"}} to={`/profile/${props.userName}`}><div className="row" style={{ fontSize: "20px", fontWeight: "700" }} >
             {props.userName}
-          </div>
+          </div></Link>
           <div className="row" style={{ fontSize: "10px" }}>
             <ChangeTime time={props.time} />
           </div>

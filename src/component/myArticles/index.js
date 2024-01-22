@@ -50,6 +50,8 @@ const MyArticles = (props) => {
           <div className="container mt-2">
             {isLoading ? (
               <Loading />
+            ) : data?.articles?.length == 0 ? (
+              <div style={{ textAlign: "center" }}>No Articles</div>
             ) : (
               data?.articles?.map((item, index) => {
                 return (

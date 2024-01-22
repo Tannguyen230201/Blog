@@ -47,7 +47,7 @@ const PostArticle = () => {
         </Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>POST ARTICLES</Modal.Title>
+            <Modal.Title>Post Article</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>

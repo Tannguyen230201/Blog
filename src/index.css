@@ -30,3 +30,7 @@ code {
 .navbar-toggler{
   border: none !important;
 }
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color: var(--bs-navbar-active-color);
+  font-weight: 500 !important;
+}

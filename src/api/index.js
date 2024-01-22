@@ -143,3 +143,13 @@ export const UnFollowAPI = createAsyncThunk(
     return response.data;
   }
 );
+export const ArticlesFollowingAPI = createAsyncThunk(
+  "articles_following_API",
+  async () => {
+    const response = await instance.get(
+      `api/articles/feed?limit=10&offset=10`
+      // "/api/articles?limit=105&offset=0"
+    );
+    return response.data;
+  }
+);

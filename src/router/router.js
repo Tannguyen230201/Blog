@@ -1,12 +1,11 @@
-import { Route, Routes ,Navigate} from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Fragment } from "react";
 import PrivateRoute from "./privateRouter";
 import Login from "../component/login";
 import Home from "../component/home";
 import DetailArticle from "../component/article/detailArticle";
 import PersonalPage from "../component/personalPage";
-
-
+import FollowingArticles from "../component/article/followingArticles";
 
 const Router = () => {
   return (
@@ -21,9 +20,13 @@ const Router = () => {
           path="/article/:slug"
           element={<PrivateRoute component={DetailArticle} />}
         />
-          <Route
+        <Route
           path="/profile/:user"
           element={<PrivateRoute component={PersonalPage} />}
+        />
+        <Route
+          path="/feed"
+          element={<PrivateRoute component={FollowingArticles} />}
         />
         {/*  <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="/login" />} />
